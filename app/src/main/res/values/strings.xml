@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sustainability Lifestyle Scorecard</string>
+    <string name="title_activity_water_bill">WaterBillActivity</string>
+    <string name="title_activity_electricity">ElectricityActivity</string>
 </resources>

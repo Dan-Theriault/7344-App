@@ -17,4 +17,14 @@ public class DashboardActivity extends AppCompatActivity {
         Intent commuteIntent = new Intent(this, CommuteActivity.class);
         startActivity(commuteIntent);
     }
+
+    public void onWaterBillPress(View v) {
+        Intent waterBillIntent = new Intent(this, WaterBillActivity.class);
+        startActivity(waterBillIntent);
+    }
+
+    public void onElectricityPress(View v) {
+        Intent electricityIntent = new Intent(this, ElectricityActivity.class);
+        startActivity(electricityIntent);
+    }
 }

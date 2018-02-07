@@ -65,7 +65,8 @@
         android:layout_height="100dp"
         android:layout_x="29dp"
         android:layout_y="301dp"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        android:onClick="onElectricityPress" />
 
     <Button
         android:id="@+id/btn_dash_water"
@@ -73,7 +74,8 @@
         android:layout_height="100dp"
         android:layout_x="218dp"
         android:layout_y="410dp"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        android:onClick="onWaterBillPress" />
 
     <Button
         android:id="@+id/btn_dash_journal"
