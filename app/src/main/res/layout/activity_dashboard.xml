@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/dash_bgd"
+    android:layout_width="1080px"
+    android:layout_height="1920px"
+    android:orientation="vertical"
+    tools:context="jasonngor.com.sustainabilitylifestylescorecard.DashboardActivity">
+
+
+    <Button
+        android:id="@+id/btn_dash_logout"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_x="310dp"
+        android:layout_y="25dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-condensed"
+        android:lineSpacingExtra="10sp"
+        android:text="Logout"
+        android:textColor="#82a125"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+
+        android:id="@+id/btn_dash_exercise"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="278dp"
+        android:layout_y="304dp"
+        android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/btn_dash_food"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="89dp"
+        android:layout_y="192dp"
+        android:background="@android:color/transparent"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="217dp" />
+
+    <Button
+        android:id="@+id/btn_dash_commute"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="216dp"
+        android:layout_y="196dp"
+        android:background="@android:color/transparent"
+        android:onClick="onCommutePress" />
+
+    <Button
+        android:id="@+id/btn_dash_score"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="153dp"
+        android:layout_y="307dp"
+        android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/btn_dash_electric"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="29dp"
+        android:layout_y="301dp"
+        android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/btn_dash_water"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="218dp"
+        android:layout_y="410dp"
+        android:background="@android:color/transparent" />
+
+    <Button
+        android:id="@+id/btn_dash_journal"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="90dp"
+        android:layout_y="409dp"
+        android:background="@android:color/transparent" />
+</AbsoluteLayout>

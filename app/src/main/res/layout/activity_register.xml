@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="jasonngor.com.sustainabilitylifestylescorecard.RegisterActivity">">
+
+
+    <EditText
+        android:id="@+id/et_username_register"
+        android:layout_width="984px"
+        android:layout_height="240px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/username"
+        android:inputType="textPersonName"
+        android:fontFamily="sans-serif-condensed"
+        android:paddingStart="18dp"
+        android:paddingTop="25dp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/et_email_register"
+        android:background="@drawable/email"
+        android:layout_width="984px"
+        android:layout_height="240px"
+        android:layout_below="@+id/et_username_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:inputType="textPersonName"
+        android:fontFamily="sans-serif-condensed"
+        android:paddingStart="18dp"
+        android:paddingTop="25dp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/et_password_register"
+        android:layout_width="984px"
+        android:layout_height="240px"
+        android:layout_alignStart="@+id/et_email_register"
+        android:layout_below="@+id/et_email_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/password"
+        android:inputType="textPassword"
+        android:fontFamily="sans-serif-condensed"
+        android:paddingStart="18dp"
+        android:paddingTop="25dp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_submit_register"
+        android:layout_width="465px"
+        android:layout_height="168px"
+        android:layout_below="@+id/et_password_register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:background="@drawable/registerbtn" />
+
+    <Button
+        android:id="@+id/button_back_register"
+        android:layout_width="70px"
+        android:layout_height="50px"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/et_username_register"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back"
+        android:onClick="onBackPress" />
+
+</RelativeLayout>
