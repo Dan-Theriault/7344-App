@@ -27,6 +27,14 @@
         <activity
             android:name=".ElectricityActivity"
             android:label="@string/title_activity_electricity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ElectricityEntryActivity"
+            android:label="@string/title_activity_electricity_entry"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".WaterBillEntryActivity"
+            android:label="@string/title_activity_water_bill_entry"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
