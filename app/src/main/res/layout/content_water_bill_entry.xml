@@ -8,4 +8,5 @@
     tools:context="jasonngor.com.sustainabilitylifestylescorecard.WaterBillEntryActivity"
     tools:showIn="@layout/activity_water_bill_entry">
 
+
 </android.support.constraint.ConstraintLayout>
