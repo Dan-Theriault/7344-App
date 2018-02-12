@@ -23,6 +23,14 @@
         <activity android:name=".DashboardActivity" />
         <activity android:name=".CommuteActivity" />
         <activity
+            android:name=".JournalActivity"
+            android:label="JournalActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity
+            android:name=".NoteActivity"
+            android:label="NoteTakingActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity
             android:name=".WaterBillActivity"
             android:label="@string/title_activity_water_bill"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
