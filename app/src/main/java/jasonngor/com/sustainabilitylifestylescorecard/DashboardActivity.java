@@ -27,4 +27,9 @@ public class DashboardActivity extends AppCompatActivity {
         Intent electricityIntent = new Intent(this, ElectricityActivity.class);
         startActivity(electricityIntent);
     }
+
+    public void onJournalPress(View v) {
+        Intent journalIntent = new Intent(this, JournalActivity.class);
+        startActivity(journalIntent);
+    }
 }
