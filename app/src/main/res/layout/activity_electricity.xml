@@ -20,9 +20,19 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:layout_marginTop="10dp"
+        android:text="Electricity Usage"
+        android:textAlignment="center"
+        android:textSize="35dp" />
+
     <ListView
         android:id="@+id/electricity_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

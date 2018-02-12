@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context="jasonngor.com.sustainabilitylifestylescorecard.WaterBillActivity">
 
-    <include layout="@layout/content_water_bill" />
+    <include
+        layout="@layout/content_water_bill"
+        android:layout_height="62dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/wEntry"
@@ -15,8 +17,18 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"/>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:text="Water Usage"
+        android:textSize="35dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"/>
+
     <ListView
         android:id="@+id/water_bill_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"></ListView>
 </android.support.design.widget.CoordinatorLayout>
