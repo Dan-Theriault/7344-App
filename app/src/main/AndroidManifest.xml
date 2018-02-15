@@ -46,6 +46,10 @@
             android:name=".WaterBillEntryActivity"
             android:label="@string/title_activity_water_bill_entry"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".CommuteEntryActivity"
+            android:label="CommuteActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
