@@ -36,6 +36,7 @@ public class DietActivity extends AppCompatActivity {
         super.onResume();
         SharedPreferences sharedPref = DietActivity.this.getSharedPreferences("DietEntries", Context.MODE_PRIVATE);
         String entryString = sharedPref.getString("entry", "");
-        dietEntryTv.setText(entryString);
+        String[] tokens = entryString.split(",");
+        dietEntryTv.setText("Meal: " + tokens[0] + "\nCalories: " + tokens[1]);
     }
 }
