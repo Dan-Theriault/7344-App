@@ -40,7 +40,8 @@
         android:layout_y="192dp"
         android:background="@android:color/transparent"
         tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="217dp" />
+        tools:layout_editor_absoluteY="217dp"
+        android:onClick="onDietPress" />
 
     <Button
         android:id="@+id/btn_dash_commute"
