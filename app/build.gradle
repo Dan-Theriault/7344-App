@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "jasonngor.com.sustainabilitylifestylescorecard"
@@ -22,6 +22,7 @@ android {
 
 dependencies {
     implementation 'com.android.support:design:25.4.0'
+    implementation 'com.android.support:support-v4:25.4.0'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -34,6 +35,8 @@ dependencies {
     // retrofit http requests
     compile "com.squareup.retrofit2:retrofit:2.3.0"
     compile "com.squareup.retrofit2:converter-moshi:2.0.0"
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
 }
 repositories {
     mavenCentral()

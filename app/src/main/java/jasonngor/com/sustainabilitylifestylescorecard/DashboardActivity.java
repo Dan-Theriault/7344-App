@@ -32,4 +32,9 @@ public class DashboardActivity extends AppCompatActivity {
         Intent journalIntent = new Intent(this, JournalActivity.class);
         startActivity(journalIntent);
     }
+
+    public void onDietPress(View v) {
+        Intent dietIntent = new Intent(this, DietActivity.class);
+        startActivity(dietIntent);
+    }
 }
