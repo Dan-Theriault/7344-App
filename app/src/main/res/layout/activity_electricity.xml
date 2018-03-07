@@ -18,21 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="69dp"
-        android:layout_marginTop="10dp"
-        android:text="Electricity Usage"
-        android:textAlignment="center"
-        android:textSize="35dp" />
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:tint="@android:color/background_light"
+        android:backgroundTint="@color/susGreen"/>
 
     <ListView
         android:id="@+id/electricity_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"/>
+        android:layout_height="match_parent"/>
 
 </android.support.design.widget.CoordinatorLayout>

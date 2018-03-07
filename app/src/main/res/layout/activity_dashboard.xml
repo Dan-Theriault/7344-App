@@ -5,6 +5,8 @@
     android:background="@drawable/dash_bgd"
     android:layout_width="1080px"
     android:layout_height="1920px"
+    android:layout_x="0dp"
+    android:layout_y="0dp"
     android:orientation="vertical"
     tools:context="jasonngor.com.sustainabilitylifestylescorecard.DashboardActivity">
 
@@ -86,5 +88,20 @@
         android:layout_y="406dp"
         android:background="@android:color/transparent"
         android:onClick="onJournalPress" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="131dp"
+        android:layout_y="81dp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-condensed"
+        android:text="DASHBOARD"
+        android:textColor="#3f7305"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="86dp" />
 
 </AbsoluteLayout>
