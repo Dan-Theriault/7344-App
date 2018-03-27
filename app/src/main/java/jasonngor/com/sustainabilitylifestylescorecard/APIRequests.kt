@@ -115,7 +115,7 @@ interface APIRequests {
 
     @Headers("Content-Type: application/json")
     @POST("/login")
-    fun postLogin(@Body user: UserData): Call<TokenResponse>
+    fun postLogin(@Body user: UserData): Call<Response>
 
 
     // Content POST requests
@@ -135,13 +135,13 @@ interface APIRequests {
     // Content GET requests
     @Headers("Content-Type: application/json")
     @GET("/food")
-    fun getFoods(@Body request: GetRequest): Call<ListResponse<Food>>
+    fun getFoods(@Body request: GetRequest): Call<Response>
 
     @Headers("Content-Type: application/json")
     @GET("/journal")
-    fun getJournals(@Body request: GetRequest): Call<ListResponse<Journal>>
+    fun getJournals(@Body request: GetRequest): Call<Response>
 
     @Headers("Content-Type: application/json")
     @GET("/commute")
-    fun getCommutes(@Body request: GetRequest): Call<ListResponse<Commute>>
+    fun getCommutes(@Body request: GetRequest): Call<Response>
 }
