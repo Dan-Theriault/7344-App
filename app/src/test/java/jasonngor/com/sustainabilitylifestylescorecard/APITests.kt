@@ -4,6 +4,7 @@ import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 /**
  * Created by dtheriault3 on 3/27/18.
@@ -66,5 +67,6 @@ class APITests {
 
         println(result?.message)
         assertEquals(false, result?.result)
+        assertNull(result!!.token)
     }
 }
