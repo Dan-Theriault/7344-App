@@ -6,17 +6,22 @@
     android:layout_height="match_parent"
     tools:context="jasonngor.com.sustainabilitylifestylescorecard.WaterBillActivity">
 
-    <include layout="@layout/content_water_bill" />
+    <include
+        layout="@layout/content_water_bill"
+        android:layout_height="62dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/wEntry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"/>
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:tint="@android:color/background_light"
+        android:backgroundTint="@color/susGreen"/>/>
 
     <ListView
         android:id="@+id/water_bill_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"></ListView>
 </android.support.design.widget.CoordinatorLayout>

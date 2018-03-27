@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jasonngor.com.sustainabilitylifestylescorecard.DietEntryActivity"
+    tools:layout_editor_absoluteY="25dp">
+
+    <EditText
+        android:id="@+id/foodTxt"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/kcalTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodTv"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/caloriesTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginStart="40dp"
+        android:text="Calories:"
+        app:layout_constraintBottom_toBottomOf="@+id/kcalTxt"
+        app:layout_constraintEnd_toStartOf="@+id/kcalTxt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/foodTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        android:layout_marginStart="62dp"
+        android:text="Item:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/foodTxt"
+        app:layout_constraintEnd_toStartOf="@+id/foodTxt"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/kcalTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBaseline_toBaselineOf="@+id/kcalTv"
+        app:layout_constraintEnd_toStartOf="@+id/kcalTv"
+        app:layout_constraintStart_toEndOf="@+id/caloriesTv" />
+
+    <TextView
+        android:id="@+id/kcalTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="147dp"
+        android:text="kcal"
+        app:layout_constraintBottom_toTopOf="@+id/addDietCfmBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/kcalTxt" />
+
+    <Button
+        android:id="@+id/addDietCfmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:onClick="onAddMealClick"
+        android:text="Add meal"
+        app:layout_constraintBottom_toTopOf="@+id/addDietCnclBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addDietCnclBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:layout_marginStart="2dp"
+        android:onClick="onCancelClick"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/addDietCfmBtn" />
+
+    <Button
+        android:id="@+id/searchRecipeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="83dp"
+        android:onClick="onSearchRecipeClick"
+        android:text="Search for recipes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
+        android:layout_marginTop="69dp"
+        android:text="Or manually input your meal:"
+        app:layout_constraintBottom_toTopOf="@+id/kcalTxt"
+        app:layout_constraintStart_toStartOf="@+id/foodTv"
+        app:layout_constraintTop_toBottomOf="@+id/searchRecipeBtn" />
+</android.support.constraint.ConstraintLayout>

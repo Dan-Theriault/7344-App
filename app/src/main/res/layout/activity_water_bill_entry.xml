@@ -16,6 +16,7 @@
             android:layout_width="413dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/colorBlack"
             android:ems="10"
             android:inputType="date"
             android:text="Date (mm/dd/yy)"
@@ -27,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/colorBlack"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Water Usage (Tgal)" />
@@ -39,7 +41,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_margin="@dimen/fab_margin" />
 
 </android.support.design.widget.CoordinatorLayout>
