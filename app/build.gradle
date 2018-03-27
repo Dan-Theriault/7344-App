@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -18,6 +19,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -33,12 +37,18 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
     // retrofit http requests
     compile "com.squareup.retrofit2:retrofit:2.3.0"
     compile "com.squareup.retrofit2:converter-moshi:2.0.0"
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
 
 }
+
 repositories {
     mavenCentral()
+    google()
+    jcenter()
 }

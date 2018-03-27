@@ -31,11 +31,11 @@ enum class FoodCategory {
 // BASIC DATA CLASSES
 data class Token (
         val hash: String,
-        val email: String, // TODO: Email type
-        val expiry: Date
+        val email: String,
+        val expiry: String
 )
 data class UserData (
-        val username: String,
+        val email: String,
         val password: String
 )
 data class MetaData (
@@ -84,64 +84,61 @@ data class GetRequest( // The targeted API endpoint is the content parameterizat
 
 
 // RESPONSE DATA CLASSES
-abstract class Response {
-    abstract val message: String
-    abstract val result: Boolean
-}
+open class Response (val message: String, val result: Boolean)
 
-data class TokenResponse (
+class TokenResponse (
         val token: Token,
-        override val message: String,
-        override val result: Boolean
-) : Response()
+        message: String,
+        result: Boolean
+) : Response(message, result)
 
-data class ListResponse<T> (
+class ListResponse<T> (
         val list: List<T>,
-        override val message: String,
-        override val result: Boolean
-) : Response()
+        message: String,
+        result: Boolean
+) : Response(message, result)
 
 
 interface APIRequests {
     @Headers("Content-Type: application/json")
-    @GET("/status")
+    @GET("status")
     fun getStatus(): Call<Response>
 
 
     // UserData requests
     @Headers("Content-Type: application/json")
-    @POST("/register")
-    fun postRegister(@Body user: UserData): Call<Response>
+    @POST("register")
+    fun postRegister(@Body user: UserData): Call<TokenResponse>
 
     @Headers("Content-Type: application/json")
-    @POST("/login")
-    fun postLogin(@Body user: UserData): Call<Response>
+    @POST("login")
+    fun postLogin(@Body user: UserData): Call<TokenResponse>
 
 
     // Content POST requests
     @Headers("Content-Type: application/json")
-    @POST("/food")
+    @POST("food")
     fun postFood(@Body request: PostRequest<Food>): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @POST("/journal")
+    @POST("journal")
     fun postJournal(@Body request: PostRequest<Journal>): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @POST("/commute")
+    @POST("commute")
     fun postCommute(@Body request: PostRequest<Commute>): Call<Response>
 
 
     // Content GET requests
     @Headers("Content-Type: application/json")
-    @GET("/food")
+    @GET("food")
     fun getFoods(@Body request: GetRequest): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @GET("/journal")
+    @GET("journal")
     fun getJournals(@Body request: GetRequest): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @GET("/commute")
+    @GET("commute")
     fun getCommutes(@Body request: GetRequest): Call<Response>
 }

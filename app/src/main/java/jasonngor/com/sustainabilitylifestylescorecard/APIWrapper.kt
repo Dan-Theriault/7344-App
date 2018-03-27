@@ -12,12 +12,12 @@ import java.util.*
  */
 
 class APIWrapper {
-    private val api: APIRequests
+    val api: APIRequests
 //    private val locationClient: FusedLocationProviderClient
 
     init {
         val retrofit: Retrofit = Retrofit.Builder()
-                .baseUrl("https://ess.dtheriault.com")
+                .baseUrl("https://ess.dtheriault.com/api/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
@@ -32,7 +32,7 @@ class APIWrapper {
                 return response.body()
             }
         }.execute()
-        return obj.get()
+        return obj?.get()
     }
 
     // THESE FUNCTIONS DO NOT, THEMSELVES, EXECUTE API REQUESTS
@@ -43,13 +43,13 @@ class APIWrapper {
         return api.getStatus()
     }
 
-    fun login(username: String, password: String): Call<TokenResponse> {
-        val user: UserData = UserData(username, password)
+    fun login(email: String, password: String): Call<TokenResponse> {
+        val user: UserData = UserData(email, password)
         return api.postLogin(user)
     }
 
-    fun register(username: String, password: String): Call<Response> {
-        val user: UserData = UserData(username, password)
+    fun register(email: String, password: String): Call<TokenResponse> {
+        val user: UserData = UserData(email, password)
         return api.postRegister(user)
     }
 
@@ -72,15 +72,15 @@ class APIWrapper {
         return api.postFood(body)
     }
 
-    fun getJournals(token: Token, date: Date): Call<ListResponse<Journal>> {
+    fun getJournals(token: Token, date: Date): Call<Response> {
         val body = GetRequest(date, token)
         return  api.getJournals(body)
     }
-    fun getCommutes(token: Token, date: Date): Call<ListResponse<Commute>> {
+    fun getCommutes(token: Token, date: Date): Call<Response> {
         val body = GetRequest(date, token)
         return  api.getCommutes(body)
     }
-    fun getFoods(token: Token, date: Date): Call<ListResponse<Food>> {
+    fun getFoods(token: Token, date: Date): Call<Response> {
         val body = GetRequest(date, token)
         return  api.getFoods(body)
     }
