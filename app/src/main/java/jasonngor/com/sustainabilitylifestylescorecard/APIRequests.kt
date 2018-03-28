@@ -11,20 +11,15 @@ import java.util.*
  * Created by dtheriault3 on 2/11/18.
  */
 
-
-// Data classes cannot be superclasses
-// These abstract classes are necessary for multiple data classes to share a type
-
-
-
-
-
 // ENUM CLASSES
 enum class CommuteMethod {
     WALK, RUN, BIKE, DRIVE, CARPOOL, PUBLIC_TRANSIT
 }
 enum class FoodCategory {
     COOKED, FAST, RESTAURANT
+}
+enum class FoodUnit {
+    POUNDS, OUNCES, KILOS, UNIT
 }
 
 
@@ -39,8 +34,8 @@ data class UserData (
         val password: String
 )
 data class MetaData (
-        val datetime: Date,
-        val location: Location?
+        val timestamp: String, // Use ISO 8601 datestrings
+        val location: String?
 )
 
 
@@ -49,22 +44,26 @@ abstract class Content {}
 
 data class Food (
         val name: String,
-        val quantity: Float,
+        val quantity: Double? = null,
+        val quantityUnits: FoodUnit? = null,
         val calories: Int,
-        val category: FoodCategory
+        val category: FoodCategory,
+        val mealTime: String
 ) : Content()
 
+// TODO: Attachments
 data class Journal (
         val title: String,
-        val contents: Nothing, // TODO: File Handling
-        val attachments: Nothing?
+        val contents: String,
+        val created: String? = null,
+        val edited: String? = null
 ) : Content()
 
 data class Commute (
         val method: CommuteMethod,
-        val distance: Float,
-        val departure: Date,
-        val arrival: Date
+        val distance: Double,
+        val departure: String,
+        val arrival: String
 ) : Content()
 
 
@@ -74,17 +73,17 @@ abstract class AuthenticatedRequest { abstract val token: Token }
 data class PostRequest<out T: Content> (
         val content: T,
         override val token: Token,
-        val metaData: MetaData
+        val metadata: MetaData
 ) : AuthenticatedRequest()
 
 data class GetRequest( // The targeted API endpoint is the content parameterization
-        val date: Date,
+        val date: String,
         override val token: Token
 ) : AuthenticatedRequest()
 
 
 // RESPONSE DATA CLASSES
-open class Response (val message: String, val result: Boolean)
+open class Response (val message: String, val result: Boolean) // kotlin classes default to final
 
 class TokenResponse (
         val token: Token,
@@ -117,28 +116,28 @@ interface APIRequests {
 
     // Content POST requests
     @Headers("Content-Type: application/json")
-    @POST("food")
+    @POST("food/new")
     fun postFood(@Body request: PostRequest<Food>): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @POST("journal")
+    @POST("journal/new")
     fun postJournal(@Body request: PostRequest<Journal>): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @POST("commute")
+    @POST("commute/new")
     fun postCommute(@Body request: PostRequest<Commute>): Call<Response>
 
 
     // Content GET requests
     @Headers("Content-Type: application/json")
-    @GET("food")
-    fun getFoods(@Body request: GetRequest): Call<Response>
+    @POST("food")
+    fun getFoods(@Body request: GetRequest): Call<ListResponse<Food>>
 
     @Headers("Content-Type: application/json")
-    @GET("journal")
-    fun getJournals(@Body request: GetRequest): Call<Response>
+    @POST("journal")
+    fun getJournals(@Body request: GetRequest): Call<ListResponse<Journal>>
 
     @Headers("Content-Type: application/json")
-    @GET("commute")
-    fun getCommutes(@Body request: GetRequest): Call<Response>
+    @POST("commute")
+    fun getCommutes(@Body request: GetRequest): Call<ListResponse<Commute>>
 }

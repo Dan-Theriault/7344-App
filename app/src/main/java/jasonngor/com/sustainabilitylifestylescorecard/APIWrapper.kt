@@ -55,32 +55,32 @@ class APIWrapper {
 
     // token and all content classes are specified in APIRequests.kt
     fun postJournal(content: Journal, token: Token): Call<Response> {
-        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time, null )
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
         val body = PostRequest<Journal>(content, token, meta)
         return api.postJournal(body)
     }
 
     fun postCommute(content: Commute, token: Token): Call<Response> {
-        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time, null )
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
         val body = PostRequest<Commute>(content, token, meta)
         return api.postCommute(body)
     }
 
     fun postFood(content: Food, token: Token): Call<Response> {
-        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time, null )
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
         val body = PostRequest<Food>(content, token, meta)
         return api.postFood(body)
     }
 
-    fun getJournals(token: Token, date: Date): Call<Response> {
+    fun getJournals(token: Token, date: String): Call<ListResponse<Journal>> {
         val body = GetRequest(date, token)
         return  api.getJournals(body)
     }
-    fun getCommutes(token: Token, date: Date): Call<Response> {
+    fun getCommutes(token: Token, date: String): Call<ListResponse<Commute>> {
         val body = GetRequest(date, token)
         return  api.getCommutes(body)
     }
-    fun getFoods(token: Token, date: Date): Call<Response> {
+    fun getFoods(token: Token, date: String): Call<ListResponse<Food>> {
         val body = GetRequest(date, token)
         return  api.getFoods(body)
     }

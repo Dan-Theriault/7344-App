@@ -1,5 +1,6 @@
 package jasonngor.com.sustainabilitylifestylescorecard
 
+import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -15,7 +16,7 @@ class APITests {
 
     @Test
     fun statusTest() {
-        val request = wrap.api.getStatus()
+        val request = wrap.status()
         val response = request.execute()
         val result = response.body()
 
@@ -25,9 +26,8 @@ class APITests {
 
     @Test
     fun executeHelperTest() {
-        val request = wrap.api.getStatus()
+        val request = wrap.status()
         val result = wrap.executeRequest(request)
-
 
         println(result?.message)
 
@@ -36,7 +36,7 @@ class APITests {
 
     @Test
     fun registrationTest() {
-        val request = wrap.api.postRegister(UserData("tester86","password"))
+        val request = wrap.register("tester86","password")
         val response = request.execute()
         val result = response.body()
 
@@ -45,8 +45,9 @@ class APITests {
     }
 
     @Test
+    @Before
     fun SuccessfulLoginTest() {
-        val request = wrap.api.postLogin(UserData("tester86","password"))
+        val request = wrap.login("tester86","password")
         val response = request.execute()
         val result = response.body()
 
@@ -61,7 +62,7 @@ class APITests {
 
     @Test
     fun BadPasswordLoginTest() {
-        val request = wrap.api.postLogin(UserData("tester86","notmypassword"))
+        val request = wrap.login("tester86","notmypassword")
         val response = request.execute()
         val result = response.body()
 
@@ -69,4 +70,87 @@ class APITests {
         assertEquals(false, result?.result)
         assertNull(result!!.token)
     }
+
+    @Test
+    fun PostCommuteTest() {
+        val content = Commute(
+                CommuteMethod.BIKE,
+                10.0,
+                "2018-03-27T16:09:03",
+                "2018-03-27T16:58:12"
+        )
+        val request = wrap.postCommute(content, token)
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.message)
+        assertEquals(true, result?.result)
+    }
+
+    @Test
+    fun PostJournalTest() {
+        val content = Journal(
+            "Writing Tests in Kotlin", "Wow, this is pretty cool!"
+        )
+        val request = wrap.postJournal(content, token)
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.message)
+        assertEquals(true, result?.result)
+    }
+
+    @Test
+    fun PostFoodTest() {
+        val content = Food(
+                "Bacon Cheeseburger",
+                1.0 / 3,
+                FoodUnit.POUNDS,
+                900,
+                FoodCategory.RESTAURANT,
+                "2018-03-27T17:20:08"
+        )
+        val request = wrap.postFood(content, token)
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.message)
+        assertEquals(true, result?.result)
+    }
+
+    @Test
+    fun GetJournalTest() {
+        val request = wrap.getJournals(token, "2018-03-27")
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.list)
+        assertEquals(true, result?.result)
+        assertNotEquals(0, result?.list?.size)
+    }
+
+    @Test
+    fun GetCommuteTest() {
+        val request = wrap.getCommutes(token, "2018-03-27")
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.list)
+        assertEquals(true, result?.result)
+        assertNotEquals(0, result?.list?.size)
+    }
+
+    @Test
+    fun GetFoodTest() {
+        val request = wrap.getFoods(token, "2018-03-27")
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.list)
+        assertEquals(true, result?.result)
+        assertNotEquals(0, result?.list?.size)
+    }
+
+
+
 }
