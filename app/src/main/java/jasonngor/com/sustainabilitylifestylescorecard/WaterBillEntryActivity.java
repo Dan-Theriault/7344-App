@@ -42,6 +42,9 @@ public class WaterBillEntryActivity extends AppCompatActivity {
                     ((EditText)findViewById(R.id.editText2)).setText("Water Consumed Today (Cups)");
                     ((EditText)findViewById(R.id.enterwdate)).setText("Date (mm/dd/yy)");
                     Toast.makeText(getBaseContext(), "New entry added!", Toast.LENGTH_LONG).show();
+
+                    Intent electricIntent = new Intent(WaterBillEntryActivity.this, ElectricityActivity.class);
+                    startActivity(electricIntent);
                 }
 
             }
