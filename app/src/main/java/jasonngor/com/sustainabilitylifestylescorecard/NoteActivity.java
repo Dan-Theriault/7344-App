@@ -25,6 +25,7 @@ public class NoteActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_note_save, menu);
+        Toast.makeText(this, "Remember to write about your clothing options!", Toast.LENGTH_SHORT).show();
         return true;
     }
 
