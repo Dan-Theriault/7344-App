@@ -1,5 +1,6 @@
 package jasonngor.com.sustainabilitylifestylescorecard;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,17 @@ public class DietEntryActivity extends AppCompatActivity {
     public void onSearchRecipeClick(View v) {
         Intent intent = new Intent(DietEntryActivity.this, SearchRecipeActivity.class);
         startActivityForResult(intent, SEARCH_RECIPE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SEARCH_RECIPE_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                foodTxt.setText(data.getStringExtra("recipeName"));
+                kcalTxt.setText(Integer.toString(data.getIntExtra("calories", 0)));
+            }
+        }
     }
 
     public void onAddMealClick(View v) {

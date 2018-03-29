@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 import java.util.*
 
 /**
@@ -12,12 +13,12 @@ import java.util.*
  */
 
 class APIWrapper {
-    private val api: APIRequests
+    val api: APIRequests
 //    private val locationClient: FusedLocationProviderClient
 
     init {
         val retrofit: Retrofit = Retrofit.Builder()
-                .baseUrl("https://ess.dtheriault.com")
+                .baseUrl("https://ess.dtheriault.com/api/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
@@ -32,7 +33,7 @@ class APIWrapper {
                 return response.body()
             }
         }.execute()
-        return obj.get()
+        return obj?.get()
     }
 
     // THESE FUNCTIONS DO NOT, THEMSELVES, EXECUTE API REQUESTS
@@ -43,45 +44,91 @@ class APIWrapper {
         return api.getStatus()
     }
 
-    fun login(username: String, password: String): Call<TokenResponse> {
-        val user: UserData = UserData(username, password)
+    fun login(email: String, password: String): Call<TokenResponse> {
+        val user: UserData = UserData(email, password)
         return api.postLogin(user)
     }
 
-    fun register(username: String, password: String): Call<Response> {
-        val user: UserData = UserData(username, password)
+    fun register(email: String, password: String): Call<TokenResponse> {
+        val user: UserData = UserData(email, password)
         return api.postRegister(user)
     }
 
     // token and all content classes are specified in APIRequests.kt
     fun postJournal(content: Journal, token: Token): Call<Response> {
-        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time, null )
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
         val body = PostRequest<Journal>(content, token, meta)
         return api.postJournal(body)
     }
 
     fun postCommute(content: Commute, token: Token): Call<Response> {
-        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time, null )
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
         val body = PostRequest<Commute>(content, token, meta)
         return api.postCommute(body)
     }
 
     fun postFood(content: Food, token: Token): Call<Response> {
-        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time, null )
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
         val body = PostRequest<Food>(content, token, meta)
         return api.postFood(body)
     }
 
-    fun getJournals(token: Token, date: Date): Call<ListResponse<Journal>> {
+    fun postWater(content: WaterCups, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<WaterCups>(content, token, meta)
+        return api.postWater(body)
+    }
+
+    fun postEntertainment(content: EntertainmentUsage, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<EntertainmentUsage>(content, token, meta)
+        return api.postEntertainmentUsage(body)
+    }
+
+    fun postHealth(content: Health, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<Health>(content, token, meta)
+        return api.postHealth(body)
+    }
+
+    fun postShowers(content: ShowerUsage, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<ShowerUsage>(content, token, meta)
+        return api.postShowerUsage(body)
+    }
+
+    fun getJournals(token: Token, date: String): Call<ListResponse<Journal>> {
         val body = GetRequest(date, token)
         return  api.getJournals(body)
     }
-    fun getCommutes(token: Token, date: Date): Call<ListResponse<Commute>> {
+    fun getCommutes(token: Token, date: String): Call<ListResponse<Commute>> {
         val body = GetRequest(date, token)
         return  api.getCommutes(body)
     }
-    fun getFoods(token: Token, date: Date): Call<ListResponse<Food>> {
+    fun getFoods(token: Token, date: String): Call<ListResponse<Food>> {
         val body = GetRequest(date, token)
         return  api.getFoods(body)
     }
+
+    fun getWater(token: Token, date: String): Call <ContentResponse<WaterCups>> {
+        val body = GetRequest(date, token)
+        return api.getWater(body)
+    }
+
+    fun getEntertainment(token: Token, date: String): Call<ContentResponse<EntertainmentUsage>> {
+        val body = GetRequest(date, token)
+        return api.getEntertainmentUsage(body)
+    }
+
+    fun getHealth(token: Token, date: String): Call<ContentResponse<Health>> {
+        val body = GetRequest(date, token)
+        return api.getHealth(body)
+    }
+
+    fun getShowers(token: Token, date: String): Call<ContentResponse<ShowerUsage>> {
+        val body = GetRequest(date, token)
+        return api.getShowerUsage(body)
+    }
+
+
 }

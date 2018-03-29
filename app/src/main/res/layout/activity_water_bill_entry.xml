@@ -31,7 +31,7 @@
             android:textColor="@color/colorBlack"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Water Usage (Tgal)" />
+            android:text="Water Consumed Today (Cups)" />
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_water_bill_entry" />

@@ -31,11 +31,12 @@
     <Button
 
         android:id="@+id/btn_dash_exercise"
-        android:layout_width="97dp"
-        android:layout_height="78dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="283dp"
+        android:layout_y="299dp"
         android:background="@android:color/transparent"
-        tools:layout_editor_absoluteX="246dp"
-        tools:layout_editor_absoluteY="308dp" />
+        android:onClick="onHealthPress"/>
 
     <Button
         android:id="@+id/btn_dash_food"

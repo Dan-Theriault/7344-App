@@ -1,6 +1,7 @@
 package jasonngor.com.sustainabilitylifestylescorecard
 
 import android.location.Location
+import android.support.annotation.IntegerRes
 import android.telecom.CallScreeningService
 import retrofit2.Call
 import retrofit2.http.*
@@ -11,36 +12,31 @@ import java.util.*
  * Created by dtheriault3 on 2/11/18.
  */
 
-
-// Data classes cannot be superclasses
-// These abstract classes are necessary for multiple data classes to share a type
-
-
-
-
-
 // ENUM CLASSES
 enum class CommuteMethod {
-    WALK, RUN, BIKE, DRIVE, CARPOOL, PUBLIC_TRANSIT
+    WALK, RUN, BIKE, DRIVE, CARPOOL, PUBLIC_TRANSIT, RIDE_SHARE
 }
 enum class FoodCategory {
     COOKED, FAST, RESTAURANT
+}
+enum class FoodUnit {
+    POUNDS, OUNCES, KILOS, UNIT
 }
 
 
 // BASIC DATA CLASSES
 data class Token (
         val hash: String,
-        val email: String, // TODO: Email type
-        val expiry: Date
+        val email: String,
+        val expiry: String
 )
 data class UserData (
-        val username: String,
+        val email: String,
         val password: String
 )
 data class MetaData (
-        val datetime: Date,
-        val location: Location?
+        val timestamp: String, // Use ISO 8601 datestrings
+        val location: String?
 )
 
 
@@ -49,23 +45,53 @@ abstract class Content {}
 
 data class Food (
         val name: String,
-        val quantity: Float,
+        val quantity: Double? = null,
+        val quantityUnits: FoodUnit? = null,
         val calories: Int,
-        val category: FoodCategory
+        val category: FoodCategory,
+        val mealTime: String,
+        val plantBased: Boolean = false
 ) : Content()
 
+// TODO: Attachments
 data class Journal (
         val title: String,
-        val contents: Nothing, // TODO: File Handling
-        val attachments: Nothing?
+        val contents: String,
+        val created: String? = null,
+        val edited: String? = null
 ) : Content()
 
 data class Commute (
         val method: CommuteMethod,
-        val distance: Float,
-        val departure: Date,
-        val arrival: Date
+        val distance: Double,
+        val departure: String,
+        val arrival: String
 ) : Content()
+
+data class WaterCups (
+        val cupsIncrement: Int = 0,
+        val cupsCount: Int? = null
+) : Content()
+
+data class ShowerUsage (
+        val minutes: Int,
+        val cold: Boolean
+) : Content()
+
+data class EntertainmentUsage (
+        val hours: Int
+) : Content()
+
+data class Health (
+        val cigarettes: Int,
+        val cigars: Int
+) : Content()
+
+data class Score (
+        val total: Int
+)
+
+
 
 
 // REQUEST DATA CLASSES
@@ -74,74 +100,109 @@ abstract class AuthenticatedRequest { abstract val token: Token }
 data class PostRequest<out T: Content> (
         val content: T,
         override val token: Token,
-        val metaData: MetaData
+        val metadata: MetaData
 ) : AuthenticatedRequest()
 
 data class GetRequest( // The targeted API endpoint is the content parameterization
-        val date: Date,
+        val date: String,
         override val token: Token
 ) : AuthenticatedRequest()
 
 
 // RESPONSE DATA CLASSES
-abstract class Response {
-    abstract val message: String
-    abstract val result: Boolean
-}
+open class Response (val message: String, val result: Boolean) // kotlin classes default to final
 
-data class TokenResponse (
+class TokenResponse (
         val token: Token,
-        override val message: String,
-        override val result: Boolean
-) : Response()
+        message: String,
+        result: Boolean
+) : Response(message, result)
 
-data class ListResponse<T> (
+class ListResponse<T> (
         val list: List<T>,
-        override val message: String,
-        override val result: Boolean
-) : Response()
+        message: String,
+        result: Boolean
+) : Response(message, result)
 
+class ContentResponse<T: Content> (
+        val content: T,
+        message: String,
+        result: Boolean
+) : Response(message, result)
 
 interface APIRequests {
     @Headers("Content-Type: application/json")
-    @GET("/status")
+    @GET("status")
     fun getStatus(): Call<Response>
 
 
-    // UserData requests
+    // Account management
     @Headers("Content-Type: application/json")
-    @POST("/register")
-    fun postRegister(@Body user: UserData): Call<Response>
+    @POST("register")
+    fun postRegister(@Body user: UserData): Call<TokenResponse>
 
     @Headers("Content-Type: application/json")
-    @POST("/login")
+    @POST("login")
     fun postLogin(@Body user: UserData): Call<TokenResponse>
 
 
-    // Content POST requests
+    // Upload new content
     @Headers("Content-Type: application/json")
-    @POST("/food")
+    @POST("food/new")
     fun postFood(@Body request: PostRequest<Food>): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @POST("/journal")
+    @POST("journal/new")
     fun postJournal(@Body request: PostRequest<Journal>): Call<Response>
 
     @Headers("Content-Type: application/json")
-    @POST("/commute")
+    @POST("commute/new")
     fun postCommute(@Body request: PostRequest<Commute>): Call<Response>
 
-
-    // Content GET requests
     @Headers("Content-Type: application/json")
-    @GET("/food")
+    @POST("water/new")
+    fun postWater(@Body request: PostRequest<WaterCups>): Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("health/new")
+    fun postHealth(@Body request: PostRequest<Health>): Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("showers/new")
+    fun postShowerUsage(@Body request: PostRequest<ShowerUsage>): Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("entertainment/new")
+    fun postEntertainmentUsage(@Body request: PostRequest<EntertainmentUsage>): Call<Response>
+
+
+
+    // Get old content
+    @Headers("Content-Type: application/json")
+    @POST("food")
     fun getFoods(@Body request: GetRequest): Call<ListResponse<Food>>
 
     @Headers("Content-Type: application/json")
-    @GET("/journal")
+    @POST("journal")
     fun getJournals(@Body request: GetRequest): Call<ListResponse<Journal>>
 
     @Headers("Content-Type: application/json")
-    @GET("/commute")
+    @POST("commute")
     fun getCommutes(@Body request: GetRequest): Call<ListResponse<Commute>>
+
+    @Headers("Content-Type: application/json")
+    @POST("water")
+    fun getWater(@Body request: GetRequest): Call<ContentResponse<WaterCups>>
+
+    @Headers("Content-Type: application/json")
+    @POST("health")
+    fun getHealth(@Body request: GetRequest): Call<ContentResponse<Health>>
+
+    @Headers("Content-Type: application/json")
+    @POST("showers")
+    fun getShowerUsage(@Body request: GetRequest): Call<ContentResponse<ShowerUsage>>
+
+    @Headers("Content-Type: application/json")
+    @POST("entertainment")
+    fun getEntertainmentUsage(@Body request: GetRequest): Call<ContentResponse<EntertainmentUsage>>
 }
