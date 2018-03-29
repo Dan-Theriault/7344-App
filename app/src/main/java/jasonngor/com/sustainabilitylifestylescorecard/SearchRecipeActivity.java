@@ -1,6 +1,8 @@
 package jasonngor.com.sustainabilitylifestylescorecard;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -105,7 +107,7 @@ public class SearchRecipeActivity extends AppCompatActivity {
         private Context mContext;
 
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends RecyclerView.ViewHolder{
             public TextView recipeNameTxt;
             public TextView kcalTxt;
             public LinearLayout parentLayout;
@@ -146,8 +148,8 @@ public class SearchRecipeActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(RecipesAdapter.ViewHolder holder, final int position) {
             // Get data model based on position
-            String recipeName = mRecipeArr.get(position);
-            int recipeKcal = mKcalArr.get(position);
+            final String recipeName = mRecipeArr.get(position);
+            final int recipeKcal = mKcalArr.get(position);
 
             // Set item views
             holder.recipeNameTxt.setText(recipeName);
@@ -158,6 +160,17 @@ public class SearchRecipeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.d("position", "" + position);
+                }
+            });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("recipeName", recipeName);
+                    returnIntent.putExtra("calories", recipeKcal);
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
                 }
             });
 
