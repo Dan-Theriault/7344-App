@@ -1,6 +1,7 @@
 package jasonngor.com.sustainabilitylifestylescorecard
 
 import android.location.Location
+import android.support.annotation.IntegerRes
 import android.telecom.CallScreeningService
 import retrofit2.Call
 import retrofit2.http.*
@@ -13,7 +14,7 @@ import java.util.*
 
 // ENUM CLASSES
 enum class CommuteMethod {
-    WALK, RUN, BIKE, DRIVE, CARPOOL, PUBLIC_TRANSIT
+    WALK, RUN, BIKE, DRIVE, CARPOOL, PUBLIC_TRANSIT, RIDE_SHARE
 }
 enum class FoodCategory {
     COOKED, FAST, RESTAURANT
@@ -48,7 +49,8 @@ data class Food (
         val quantityUnits: FoodUnit? = null,
         val calories: Int,
         val category: FoodCategory,
-        val mealTime: String
+        val mealTime: String,
+        val plantBased: Boolean = false
 ) : Content()
 
 // TODO: Attachments
@@ -65,6 +67,31 @@ data class Commute (
         val departure: String,
         val arrival: String
 ) : Content()
+
+data class WaterCups (
+        val cupsIncrement: Int = 0,
+        val cupsCount: Int? = null
+) : Content()
+
+data class ShowerUsage (
+        val minutes: Int,
+        val cold: Boolean
+) : Content()
+
+data class EntertainmentUsage (
+        val hours: Int
+) : Content()
+
+data class Health (
+        val cigarettes: Int,
+        val cigars: Int
+) : Content()
+
+data class Score (
+        val total: Int
+)
+
+
 
 
 // REQUEST DATA CLASSES
@@ -97,6 +124,11 @@ class ListResponse<T> (
         result: Boolean
 ) : Response(message, result)
 
+class ContentResponse<T: Content> (
+        val content: T,
+        message: String,
+        result: Boolean
+) : Response(message, result)
 
 interface APIRequests {
     @Headers("Content-Type: application/json")
@@ -104,7 +136,7 @@ interface APIRequests {
     fun getStatus(): Call<Response>
 
 
-    // UserData requests
+    // Account management
     @Headers("Content-Type: application/json")
     @POST("register")
     fun postRegister(@Body user: UserData): Call<TokenResponse>
@@ -114,7 +146,7 @@ interface APIRequests {
     fun postLogin(@Body user: UserData): Call<TokenResponse>
 
 
-    // Content POST requests
+    // Upload new content
     @Headers("Content-Type: application/json")
     @POST("food/new")
     fun postFood(@Body request: PostRequest<Food>): Call<Response>
@@ -127,8 +159,25 @@ interface APIRequests {
     @POST("commute/new")
     fun postCommute(@Body request: PostRequest<Commute>): Call<Response>
 
+    @Headers("Content-Type: application/json")
+    @POST("water/new")
+    fun postWater(@Body request: PostRequest<WaterCups>): Call<Response>
 
-    // Content GET requests
+    @Headers("Content-Type: application/json")
+    @POST("health/new")
+    fun postHealth(@Body request: PostRequest<Health>): Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("showers/new")
+    fun postShowerUsage(@Body request: PostRequest<ShowerUsage>): Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("entertainment/new")
+    fun postEntertainmentUsage(@Body request: PostRequest<EntertainmentUsage>): Call<Response>
+
+
+
+    // Get old content
     @Headers("Content-Type: application/json")
     @POST("food")
     fun getFoods(@Body request: GetRequest): Call<ListResponse<Food>>
@@ -140,4 +189,20 @@ interface APIRequests {
     @Headers("Content-Type: application/json")
     @POST("commute")
     fun getCommutes(@Body request: GetRequest): Call<ListResponse<Commute>>
+
+    @Headers("Content-Type: application/json")
+    @POST("water")
+    fun getWater(@Body request: GetRequest): Call<ContentResponse<WaterCups>>
+
+    @Headers("Content-Type: application/json")
+    @POST("health")
+    fun getHealth(@Body request: GetRequest): Call<ContentResponse<Health>>
+
+    @Headers("Content-Type: application/json")
+    @POST("showers")
+    fun getShowerUsage(@Body request: GetRequest): Call<ContentResponse<ShowerUsage>>
+
+    @Headers("Content-Type: application/json")
+    @POST("entertainment")
+    fun getEntertainmentUsage(@Body request: GetRequest): Call<ContentResponse<EntertainmentUsage>>
 }
