@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ public class DietActivity extends AppCompatActivity {
             SharedPreferences sharedPref = DietActivity.this.getSharedPreferences("DietEntries", Context.MODE_PRIVATE);
             String entryString = sharedPref.getString("entry", "");
             String[] tokens = entryString.split(",");
-            dietEntryTv.setText("Meal: " + tokens[0] + "\nCalories: " + tokens[1]);
+            dietEntryTv.setText("Meal: " + tokens[0] + "\nCalories: " + tokens[1] + "\nPlant-Based: " + tokens[2]);
 
         } catch (Exception e) {
             return;

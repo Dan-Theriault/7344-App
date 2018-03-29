@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="jasonngor.com.sustainabilitylifestylescorecard.DietEntryActivity"
-    tools:layout_editor_absoluteY="25dp">
+    tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/foodTxt"
         android:layout_width="0dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="22dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="22dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/kcalTv"
+        app:layout_constraintBottom_toBottomOf="@+id/caloriesTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/foodTv"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
@@ -25,13 +25,13 @@
         android:id="@+id/caloriesTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
         android:layout_marginEnd="13dp"
         android:layout_marginStart="40dp"
         android:text="Calories:"
-        app:layout_constraintBottom_toBottomOf="@+id/kcalTxt"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/kcalTxt"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/foodTv"
@@ -58,12 +58,12 @@
         android:id="@+id/kcalTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:layout_marginEnd="147dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginTop="2dp"
         android:text="kcal"
-        app:layout_constraintBottom_toTopOf="@+id/addDietCfmBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/kcalTxt" />
+        app:layout_constraintStart_toEndOf="@+id/kcalTxt"
+        app:layout_constraintTop_toBottomOf="@+id/foodTxt" />
 
     <Button
         android:id="@+id/addDietCfmBtn"
@@ -80,7 +80,7 @@
         android:id="@+id/addDietCnclBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="41dp"
         android:layout_marginStart="2dp"
         android:onClick="onCancelClick"
         android:text="Cancel"
@@ -91,21 +91,28 @@
         android:id="@+id/searchRecipeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="83dp"
+        android:layout_marginBottom="42dp"
         android:onClick="onSearchRecipeClick"
         android:text="Search for recipes"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        android:layout_marginTop="69dp"
+        android:layout_marginBottom="57dp"
         android:text="Or manually input your meal:"
-        app:layout_constraintBottom_toTopOf="@+id/kcalTxt"
-        app:layout_constraintStart_toStartOf="@+id/foodTv"
-        app:layout_constraintTop_toBottomOf="@+id/searchRecipeBtn" />
+        app:layout_constraintBottom_toTopOf="@+id/caloriesTv"
+        app:layout_constraintStart_toStartOf="@+id/foodTv" />
+
+    <CheckBox
+        android:id="@+id/plantBasedCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Plant-based"
+        app:layout_constraintStart_toStartOf="@+id/kcalTxt"
+        app:layout_constraintTop_toBottomOf="@+id/kcalTxt" />
 </android.support.constraint.ConstraintLayout>
