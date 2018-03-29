@@ -30,7 +30,7 @@
             android:textColor="@color/colorBlack"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Electricity Usage (kWh)" />
+            android:text="TV/Computer/Entertainment Usage (Hours)" />
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
