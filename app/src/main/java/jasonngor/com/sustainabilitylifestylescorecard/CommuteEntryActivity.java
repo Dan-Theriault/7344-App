@@ -1,5 +1,6 @@
 package jasonngor.com.sustainabilitylifestylescorecard;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,10 +38,9 @@ public class CommuteEntryActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CommuteEntryActivity.this, android.R.layout.simple_list_item_1,
                 CommuteActivity.list);
         CommuteActivity.show.setAdapter(adapter);
-
-        Toast.makeText(this,
-                "Congratulations! You have earned 6 earth bucks",
-                Toast.LENGTH_LONG).show();
+        
+        Intent commuteIntent = new Intent(this, CommuteActivity.class);
+        startActivity(commuteIntent);
     }
 
 }
