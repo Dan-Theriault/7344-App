@@ -32,7 +32,8 @@
         android:layout_height="100dp"
         android:layout_x="283dp"
         android:layout_y="299dp"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        android:onClick="onHealthPress"/>
 
     <Button
         android:id="@+id/btn_dash_food"
