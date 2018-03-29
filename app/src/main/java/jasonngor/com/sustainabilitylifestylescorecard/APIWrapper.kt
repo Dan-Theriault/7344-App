@@ -5,6 +5,7 @@ import android.os.AsyncTask
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 import java.util.*
 
 /**
@@ -72,6 +73,30 @@ class APIWrapper {
         return api.postFood(body)
     }
 
+    fun postWater(content: WaterCups, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<WaterCups>(content, token, meta)
+        return api.postWater(body)
+    }
+
+    fun postEntertainment(content: EntertainmentUsage, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<EntertainmentUsage>(content, token, meta)
+        return api.postEntertainmentUsage(body)
+    }
+
+    fun postHealth(content: Health, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<Health>(content, token, meta)
+        return api.postHealth(body)
+    }
+
+    fun postShowers(content: ShowerUsage, token: Token): Call<Response> {
+        val meta = MetaData(GregorianCalendar(TimeZone.getTimeZone("UTC")).time.toString(), null )
+        val body = PostRequest<ShowerUsage>(content, token, meta)
+        return api.postShowerUsage(body)
+    }
+
     fun getJournals(token: Token, date: String): Call<ListResponse<Journal>> {
         val body = GetRequest(date, token)
         return  api.getJournals(body)
@@ -84,4 +109,26 @@ class APIWrapper {
         val body = GetRequest(date, token)
         return  api.getFoods(body)
     }
+
+    fun getWater(token: Token, date: String): Call <ContentResponse<WaterCups>> {
+        val body = GetRequest(date, token)
+        return api.getWater(body)
+    }
+
+    fun getEntertainment(token: Token, date: String): Call<ContentResponse<EntertainmentUsage>> {
+        val body = GetRequest(date, token)
+        return api.getEntertainmentUsage(body)
+    }
+
+    fun getHealth(token: Token, date: String): Call<ContentResponse<Health>> {
+        val body = GetRequest(date, token)
+        return api.getHealth(body)
+    }
+
+    fun getShowers(token: Token, date: String): Call<ContentResponse<ShowerUsage>> {
+        val body = GetRequest(date, token)
+        return api.getShowerUsage(body)
+    }
+
+
 }
