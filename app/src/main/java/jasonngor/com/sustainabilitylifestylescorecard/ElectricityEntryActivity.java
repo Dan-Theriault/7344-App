@@ -27,11 +27,11 @@ public class ElectricityEntryActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String entries = data.getText().toString() + " kWh        Date: ";
+                String entries = data.getText().toString() + " Hours        Date: ";
                 String dates = date.getText().toString();
                 entries = entries + dates;
 
-                if (entries == null || entries.equals(" kWh        Date: ")) {
+                if (entries == null || entries.equals(" Hours        Date: ")) {
                     Toast.makeText(getBaseContext(), "Cannot submit empty field", Toast.LENGTH_LONG).show();
                 } else if (dates == null|| dates.equals("")) {
                     Toast.makeText(getBaseContext(), "Please enter a date", Toast.LENGTH_LONG).show();
@@ -39,7 +39,7 @@ public class ElectricityEntryActivity extends AppCompatActivity {
                     ElectricityActivity.list.add(entries);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(ElectricityEntryActivity.this, android.R.layout.simple_list_item_1, ElectricityActivity.list);
                     ElectricityActivity.show.setAdapter(adapter);
-                    ((EditText)findViewById(R.id.editText)).setText("Electricity Usage (kWh)");
+                    ((EditText)findViewById(R.id.editText)).setText("TV/Computer/Entertainment Usage (Hours)");
                     ((EditText)findViewById(R.id.enterDate)).setText("Date (mm/dd/yy)");
                     Toast.makeText(getBaseContext(), "New entry added!", Toast.LENGTH_LONG).show();
                 }

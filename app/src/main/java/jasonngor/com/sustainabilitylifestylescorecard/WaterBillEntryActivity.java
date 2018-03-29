@@ -27,11 +27,11 @@ public class WaterBillEntryActivity extends AppCompatActivity {
         waterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String entries = data.getText().toString() + " Tgal        Date: ";
+                String entries = data.getText().toString() + " Cups        Date: ";
                 String dates = date.getText().toString();
                 entries = entries + dates;
 
-                if (entries == null || entries.equals(" Tgal        Date: ")) {
+                if (entries == null || entries.equals(" Cups        Date: ")) {
                     Toast.makeText(getBaseContext(), "Cannot submit empty field", Toast.LENGTH_LONG).show();
                 } else if (dates == null||dates.equals("")) {
                     Toast.makeText(getBaseContext(), "Please enter a date", Toast.LENGTH_LONG).show();
@@ -39,7 +39,7 @@ public class WaterBillEntryActivity extends AppCompatActivity {
                     WaterBillActivity.list.add(entries);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(WaterBillEntryActivity.this, android.R.layout.simple_list_item_1, WaterBillActivity.list);
                     WaterBillActivity.show.setAdapter(adapter);
-                    ((EditText)findViewById(R.id.editText2)).setText("Water Usage (Tgal)");
+                    ((EditText)findViewById(R.id.editText2)).setText("Water Consumed Today (Cups)");
                     ((EditText)findViewById(R.id.enterwdate)).setText("Date (mm/dd/yy)");
                     Toast.makeText(getBaseContext(), "New entry added!", Toast.LENGTH_LONG).show();
                 }
