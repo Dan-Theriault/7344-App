@@ -23,7 +23,7 @@ public class ElectricityEntryActivity extends AppCompatActivity {
         data = (EditText) findViewById(R.id.editText);
         date = (EditText) findViewById(R.id.enterDate);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,10 +42,15 @@ public class ElectricityEntryActivity extends AppCompatActivity {
                     ((EditText)findViewById(R.id.editText)).setText("TV/Computer/Entertainment Usage (Hours)");
                     ((EditText)findViewById(R.id.enterDate)).setText("Date (mm/dd/yy)");
                     Toast.makeText(getBaseContext(), "New entry added!", Toast.LENGTH_LONG).show();
+
+                    Intent electricIntent = new Intent(ElectricityEntryActivity.this, ElectricityActivity.class);
+                    startActivity(electricIntent);
                 }
+
 
             }
         });
+
     }
 
 }
