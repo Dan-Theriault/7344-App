@@ -69,8 +69,8 @@ data class Commute (
 ) : Content()
 
 data class WaterCups (
-        val cupsIncrement: Int = 0,
-        val cupsCount: Int? = null
+        val isIncrement: Boolean = true,
+        val cups: Int
 ) : Content()
 
 data class ShowerUsage (

@@ -13,6 +13,7 @@ import kotlin.test.assertNull
 class APITests {
     val wrap: APIWrapper = APIWrapper()
     lateinit var token: Token
+    val today: String = "2018-04-05"
 
     @Test
     fun statusTest() {
@@ -120,7 +121,7 @@ class APITests {
 
     @Test
     fun GetJournalTest() {
-        val request = wrap.getJournals(token, "2018-03-27")
+        val request = wrap.getJournals(token, "2018-04-05")
         val response = request.execute()
         val result = response.body()
 
@@ -152,5 +153,47 @@ class APITests {
     }
 
 
+    @Test
+    fun GetWaterTest() {
+        val request = wrap.getWater(token, today)
+        val response = request.execute()
+        val result = response.body()
 
+        println(result?.content)
+        assertEquals(true, result?.result)
+        assertNotNull(result?.content)
+    }
+
+    @Test
+    fun GetShowerTest() {
+        val request = wrap.getShowers(token, today)
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.content)
+        assertEquals(true, result?.result)
+        assertNotNull(result?.content)
+    }
+
+    @Test
+    fun GetEntertainmentTest() {
+        val request = wrap.getEntertainment(token, today)
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.content)
+        assertEquals(true, result?.result)
+        assertNotNull(result?.content)
+    }
+
+    @Test
+    fun GetHealthTest() {
+        val request = wrap.getHealth(token, today)
+        val response = request.execute()
+        val result = response.body()
+
+        println(result?.content)
+        assertEquals(true, result?.result)
+        assertNotNull(result?.content)
+    }
 }
