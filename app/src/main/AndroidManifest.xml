@@ -20,15 +20,18 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".DashboardActivity"
-           />
+        <activity android:name=".DashboardActivity" />
         <activity
             android:name=".CommuteActivity"
             android:label="COMMUTE"
-            android:theme="@style/MyCustomTheme"/>
+            android:theme="@style/MyCustomTheme" />
         <activity
             android:name=".JournalActivity"
             android:label="JOURNAL"
+            android:theme="@style/MyCustomTheme" />
+        <activity
+            android:name=".HealthActivity"
+            android:label="HEALTH"
             android:theme="@style/MyCustomTheme" />
         <activity
             android:name=".NoteActivity"
@@ -49,22 +52,20 @@
         <activity
             android:name=".WaterBillEntryActivity"
             android:label="WATER ENTRY"
-            android:theme="@style/MyCustomTheme"></activity>
+            android:theme="@style/MyCustomTheme" />
         <activity
             android:name=".CommuteEntryActivity"
             android:label="COMMUTE ENTRY"
-            android:theme="@style/MyCustomTheme"></activity>
+            android:theme="@style/MyCustomTheme" />
         />
         <activity
             android:name=".DietActivity"
             android:label="DIET"
-            android:theme="@style/MyCustomTheme"
-            />
+            android:theme="@style/MyCustomTheme" />
         <activity
             android:name=".DietEntryActivity"
             android:label="DIET ENTRY"
-            android:theme="@style/MyCustomTheme"
-            />
+            android:theme="@style/MyCustomTheme" />
         <activity android:name=".SearchRecipeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -74,6 +75,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity android:name=".HeathActivity"></activity>
     </application>
 
 </manifest>

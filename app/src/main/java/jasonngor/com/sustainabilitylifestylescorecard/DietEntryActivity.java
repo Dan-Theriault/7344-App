@@ -7,12 +7,14 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class DietEntryActivity extends AppCompatActivity {
 
     private EditText foodTxt;
     private EditText kcalTxt;
+    private CheckBox plantBasedCheckbox;
 
     private static final int SEARCH_RECIPE_REQUEST = 1;
 
@@ -22,6 +24,7 @@ public class DietEntryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diet_entry);
         foodTxt = (EditText) findViewById(R.id.foodTxt);
         kcalTxt = (EditText) findViewById(R.id.kcalTxt);
+        plantBasedCheckbox = (CheckBox) findViewById(R.id.plantBasedCheckbox);
     }
 
     public void onSearchRecipeClick(View v) {
@@ -46,7 +49,7 @@ public class DietEntryActivity extends AppCompatActivity {
         Context context = DietEntryActivity.this;
         SharedPreferences sharedPref = context.getSharedPreferences("DietEntries", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("entry", foodName + "," + kcal);
+        editor.putString("entry", foodName + "," + kcal + "," + plantBasedCheckbox.isChecked());
         editor.commit();
         finish();
     }
