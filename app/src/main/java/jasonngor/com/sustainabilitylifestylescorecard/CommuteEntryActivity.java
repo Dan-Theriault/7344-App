@@ -9,10 +9,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+
 public class CommuteEntryActivity extends AppCompatActivity {
 
     public static EditText distance;
     public static Spinner methodSpinner;
+    public int commuteScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,21 @@ public class CommuteEntryActivity extends AppCompatActivity {
         methodSpinner.setAdapter(adapter);
     }
 
+    public void setCommuteScore() {
+        String entry = distance.getText().toString();
+        double miles = Integer.parseInt(entry);
+        double neg = 20 * (miles/100);
+        if (methodSpinner.getSelectedItem().equals("Car")) {
+            commuteScore = 20 - (int) neg;
+        } else if (methodSpinner.getSelectedItem().toString() == "Carpool/Rideshare") {
+            commuteScore = 20 - (int) neg/2;
+        } else {
+            commuteScore = 20;
+        }
+    }
+
     public void onSubmitCommutePress(View v) {
+
         String entries = distance.getText().toString();
         String method = methodSpinner.getSelectedItem().toString();
         entries = method + "        " + entries + " miles";
@@ -38,8 +55,11 @@ public class CommuteEntryActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CommuteEntryActivity.this, android.R.layout.simple_list_item_1,
                 CommuteActivity.list);
         CommuteActivity.show.setAdapter(adapter);
-        
-        Intent commuteIntent = new Intent(this, CommuteActivity.class);
+
+        setCommuteScore();
+        Intent commuteIntent = new Intent(this, DashboardActivity.class);
+        commuteIntent.putExtra("activity", commuteScore);
+
         startActivity(commuteIntent);
     }
 

@@ -24,48 +24,59 @@
         <activity
             android:name=".CommuteActivity"
             android:label="COMMUTE"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".JournalActivity"
             android:label="JOURNAL"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".HealthActivity"
             android:label="HEALTH"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".NoteActivity"
             android:label="JOURNAL ENTRY"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".WaterBillActivity"
             android:label="WATER USAGE"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".ElectricityActivity"
             android:label="ELECTRIC USAGE"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".ElectricityEntryActivity"
             android:label="ELECTRIC ENTRY"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".ElectricityActivity"/>
         <activity
             android:name=".WaterBillEntryActivity"
             android:label="WATER ENTRY"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".WaterBillActivity"/>
         <activity
             android:name=".CommuteEntryActivity"
             android:label="COMMUTE ENTRY"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".CommuteActivity"/>
         />
         <activity
             android:name=".DietActivity"
             android:label="DIET"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".DietEntryActivity"
             android:label="DIET ENTRY"
-            android:theme="@style/MyCustomTheme" />
+            android:theme="@style/MyCustomTheme"
+            android:parentActivityName=".DietActivity"/>
         <activity android:name=".SearchRecipeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />

@@ -20,6 +20,7 @@ public class CommuteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commute);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         show = (ListView)findViewById(R.id.commute_listview);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(CommuteActivity.this, android.R.layout.simple_list_item_1, list);
         show.setAdapter(adapter);

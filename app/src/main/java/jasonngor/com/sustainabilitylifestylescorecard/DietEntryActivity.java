@@ -13,7 +13,7 @@ import android.widget.EditText;
 public class DietEntryActivity extends AppCompatActivity {
 
     private EditText foodTxt;
-    private EditText kcalTxt;
+    public static EditText kcalTxt;
     private CheckBox plantBasedCheckbox;
 
     private static final int SEARCH_RECIPE_REQUEST = 1;

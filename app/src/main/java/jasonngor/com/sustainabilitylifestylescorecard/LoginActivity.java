@@ -40,7 +40,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Intent dashboardIntent = new Intent(this, DashboardActivity.class);
+        dashboardIntent.putExtra("activity", 0);
         startActivity(dashboardIntent);
+
     }
 
     public void onBackPress(View v) {
