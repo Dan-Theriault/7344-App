@@ -11,14 +11,13 @@
         android:id="@+id/smokingBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="86dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
         android:text="Do you smoke cigarettes?"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -28,34 +27,32 @@
         android:layout_width="243dp"
         android:layout_height="53dp"
         android:layout_marginBottom="383dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="If yes, how many per day?"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editText4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/smokingBox"
+        app:layout_constraintVertical_bias="0.098"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="107dp"
         android:layout_height="41dp"
-        android:layout_marginBottom="388dp"
+        android:layout_marginBottom="352dp"
         android:layout_marginEnd="33dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginTop="138dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="# cigarettes"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText3"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -72,31 +69,33 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <TextView
         android:id="@+id/clothesQ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="114dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="28dp"
         android:text="How much clothes do you own?"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.569"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/editText4"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="145dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/save"
         app:layout_constraintTop_toBottomOf="@+id/clothesQ"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="7dp" />
 
 </android.support.constraint.ConstraintLayout>
